@@ -20,3 +20,5 @@ commands:
        description: Set My Location!
     location:
        description: TELEPORT TO MY LOCATION!!!!
+    heal:
+       description: If you have a player's name after Heal, It will heal that player, Otherwise it heals you!
