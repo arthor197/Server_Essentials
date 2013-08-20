@@ -4,21 +4,17 @@ version: 1.0
 description: >
              Server Essentials is a plugin that contains all the essentials to running a Succesfull server.
 commands:
-    kick:
-       description: Kicks the Target Player!
     kill:
        description: Kill's the Target Player!
-    Freeze:
-       description: Freeze's the Target Player!
     food0:
        description: Set's the Target Player's food to 0!
     food1:
        description: Set's the Target Player's food to Full!
     id:
        description: Tell's You the ID of the block you're looking at! 
-    setmylocation:
-       description: Set My Location!
-    location:
-       description: TELEPORT TO MY LOCATION!!!!
+    setwp:
+       description: Set's a Personal warp!
+    tpwp:
+       description: Teleport's you to your personal warp!
     heal:
        description: If you have a player's name after Heal, It will heal that player, Otherwise it heals you!

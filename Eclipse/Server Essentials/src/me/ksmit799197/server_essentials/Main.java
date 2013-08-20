@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -17,14 +18,14 @@ public class Main extends JavaPlugin{
 	@Override
 	public void onDisable(){
 		PluginDescriptionFile pdfFile = this.getDescription();
-		this.logger.info(pdfFile.getName() + pdfFile.getVersion() + " Has Been Disabled! ");
+		this.logger.info("[Server Essentials]" + pdfFile.getName() + " v" + pdfFile.getVersion() + " Has Been Disabled!");
 		saveConfig();
 	}
 	
 	@Override
 	public void onEnable(){
 		PluginDescriptionFile pdfFile = this.getDescription();
-		this.logger.info(pdfFile.getName() + pdfFile.getVersion() + " Has Been Enabled!");
+		this.logger.info("[Server Essentials] " + pdfFile.getName() + " v" + pdfFile.getVersion() + " Has Been Enabled!");
 		saveConfig();
 	}
 	
@@ -32,6 +33,7 @@ public class Main extends JavaPlugin{
 	public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args){
 		if(sender instanceof Player){
 			Player player = (Player) sender;
+			Block blockid = player.getTargetBlock(null, 10000);
 			if(commandLabel.equalsIgnoreCase("setwp")){
 				getConfig().set(player.getName() + ".x", player.getLocation().getBlockX());
 				getConfig().set(player.getName() + ".y", player.getLocation().getBlockY());
@@ -72,21 +74,23 @@ public class Main extends JavaPlugin{
 					}
 				}	
 				}else if(commandLabel.equalsIgnoreCase("food0")){
-				if(args.length == 0){
+					if(args.length == 0){
 					player.setFoodLevel(0);
 					player.sendMessage(ChatColor.GREEN + "Your Suddenly Starving!");	
 				}
-				else if(args.length == 1){
-					if(player.getServer().getPlayer(args [0])!=null){
-						Player targetPlayer = player.getServer().getPlayer(args [0]);
-						targetPlayer.setFoodLevel(0);
-						player.sendMessage(ChatColor.GREEN + "Set Player's Food to 0!");
-						targetPlayer.sendMessage(ChatColor.GREEN + "Your Suddenly Starving!");
-					}else{
-						player.sendMessage(ChatColor.RED + "[ERROR] That Player is Not Online!");
+					else if(args.length == 1){
+						if(player.getServer().getPlayer(args [0])!=null){
+							Player targetPlayer = player.getServer().getPlayer(args [0]);
+							targetPlayer.setFoodLevel(0);
+							player.sendMessage(ChatColor.GREEN + "Set Player's Food to 0!");
+							targetPlayer.sendMessage(ChatColor.GREEN + "Your Suddenly Starving!");
+						}else{
+							player.sendMessage(ChatColor.RED + "[ERROR] That Player is Not Online!");
+						}
 					}
+				}else if((commandLabel.equalsIgnoreCase("id"))){
+					player.sendMessage(ChatColor.GREEN + "Block ID; " + blockid.getTypeId());
 				}
-			}
 		}return false;
 	}
 }
