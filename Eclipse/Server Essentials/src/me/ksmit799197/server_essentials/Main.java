@@ -91,6 +91,54 @@ public class Main extends JavaPlugin{
 				}else if((commandLabel.equalsIgnoreCase("id"))){
 					player.sendMessage(ChatColor.GREEN + "Block ID; " + blockid.getTypeId());
 				}
+				else if(commandLabel.equalsIgnoreCase("ignite")){
+					if(args.length == 0){
+						player.setFireTicks(500);
+						player.sendMessage(ChatColor.GREEN + "Your On Fire!");	
+					}
+					else if(args.length == 1){
+						if(player.getServer().getPlayer(args [0])!=null){
+							Player targetPlayer = player.getServer().getPlayer(args [0]);
+							targetPlayer.setFireTicks(500);
+							targetPlayer.sendMessage(ChatColor.GREEN + "You're On Fire!");
+							player.sendMessage(ChatColor.GREEN + "Set Player On Fire!");
+						}else{
+							player.sendMessage(ChatColor.RED + "[ERROR] That Player is Not Online!");
+						}
+					}
+				}
+				else if(commandLabel.equalsIgnoreCase("slap")){
+					if(args.length == 0){
+						player.damage(1);
+						player.sendMessage(ChatColor.GREEN + "Stop Slapping Yourself!");	
+					}
+					else if(args.length == 1){
+						if(player.getServer().getPlayer(args [0])!=null){
+							Player targetPlayer = player.getServer().getPlayer(args [0]);
+							player.damage(1);
+							targetPlayer.sendMessage(ChatColor.GREEN + "You've Been Slaped!");
+							player.sendMessage(ChatColor.GREEN + "Slaped Player!");
+						}else{
+							player.sendMessage(ChatColor.RED + "[ERROR] That Player is Not Online!");
+						}
+					}
+				}
+				else if(commandLabel.equalsIgnoreCase("kill")){
+					if(args.length == 0){
+						player.damage(20);
+						player.sendMessage(ChatColor.GREEN + "Killed Yourself!");	
+					}
+					else if(args.length == 1){
+						if(player.getServer().getPlayer(args [0])!=null){
+							Player targetPlayer = player.getServer().getPlayer(args [0]);
+							targetPlayer.damage(20);
+							targetPlayer.sendMessage(ChatColor.GREEN + "You Died!");
+							player.sendMessage(ChatColor.GREEN + "Killed Player!");
+						}else{
+							player.sendMessage(ChatColor.RED + "[ERROR] That Player is Not Online!");
+						}
+					}
+				}
 		}return false;
 	}
 }

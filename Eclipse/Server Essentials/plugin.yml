@@ -18,3 +18,7 @@ commands:
        description: Teleport's you to your personal warp!
     heal:
        description: If you have a player's name after Heal, It will heal that player, Otherwise it heals you!
+    slap:
+       description: Slap a Player Or Your Self!
+    ignite:
+       description: Ignite a Player or yourself!
